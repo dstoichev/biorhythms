@@ -11,77 +11,89 @@
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
         <script type="text/javascript" src="./jqplot/jquery.jqplot.min.js"></script>
-        <script type="text/javascript" src="./jqplot/plugins/jqplot.canvasTextRenderer.min.js"></script>
-        <script type="text/javascript" src="./jqplot/plugins/jqplot.canvasAxisLabelRenderer.min.js"></script>
-        <script>
-            $(document).on('pageshow', '#graph-page', function(){ 
-                $(document).on( "popupafteropen", "#ExchangeRate_graph",function( event, ui ) {
-                    var plot1 = $.jqplot('mychartshow', [[2.89, 3.1, 3.5, 3.4, 2.92]], {
-                        title : 'US Dollar',
-
-                        axes : {
-                            xaxis : {
-                                ticks : [[1, 14], [2, 21], [3, 28], [4, 4], [5, 11]] //using 2d value array
-                            },
-                            yaxis : {
-                                ticks : [2.8, 3.0, 3.2, 3.4, 3.6]
-
-                            }
-
-                        }
-                    });
-                });
-            });
-        </script>
+        <script type="text/javascript" src="./jqplot/plugins/jqplot.pointLabels.min.js"></script>
+        <script type="text/javascript" src="./jqplot/plugins/jqplot.categoryAxisRenderer.min.js"></script>
+        <script type="text/javascript" src="./jqplot/plugins/jqplot.highlighter.min.js"></script>
     </head>
     <body>
         <div data-role="page" id="graph-page">
 
-            <div data-role="content">
-                <a href="#ExchangeRate_graph" data-rel="popup" data-role="button" data-inline="true" data-transition="pop">Basic Popup</a>
-                <div data-role="popup" id="ExchangeRate_graph" data-theme="c" align="left">
+            <div data-role="content">                
+                <!--Graph Section-->
+                <div id="chart1" style="height: 300px;"></div>
 
-                    <!--Graph Section-->
-                    <div id="mychartshow">
-
-                    </div>
-
-                </div>
             </div>
+        </div>
 
             <script type="text/javascript">
                 $(document).ready(function() {
                     var now = moment(),
                         birthDay = moment("1971-06-25"),
-                        diff = now.diff(birthDay, 'days')
-                        initDisplayingPeriod = function (diffInDays) {
-                            var period = [],
-                                //currentDay = moment(),
-                                currentDay = moment("1971-06-25"),
-                                //currentDiffInDays = diffInDays;
-                                currentDiffInDays = 0;
-                                
-                            for (var i = 1; i < 16; i++) {
-                                var day = {
-                                    day : currentDay.clone(),
-                                    physical : Math.sin(2 * Math.PI * currentDiffInDays / 23),
-                                    emotional : Math.sin(2 * Math.PI * currentDiffInDays / 28),
-                                    intellectual : Math.sin(2 * Math.PI * currentDiffInDays / 33)                            
-                                };
-                                period.push(day);
-                                currentDiffInDays++;
-                                currentDay.add(1, 'day');
-                            }
-                            
-                            return period;
-                        };
+                        diff = now.diff(birthDay, 'days'),
+                        physical = [],
+                        emotional = [],
+                        intellectual = [],
+                        currentDay = birthDay.clone(),
+                        currentDiffInDays = 0;
                         
-                    console.debug(initDisplayingPeriod(0));
+                    for (var i = 1; i < 32; i++) {
+                        physical.push([i-1, Math.sin(2 * Math.PI * currentDiffInDays / 23)]);
+                        emotional.push([i-1, Math.sin(2 * Math.PI * currentDiffInDays / 28)]);
+                        intellectual.push([i-1, Math.sin(2 * Math.PI * currentDiffInDays / 33)]);
+                        
+                        currentDiffInDays++;
+                        currentDay.add(1, 'day');
+                    }
+                        
+                    var plot1 = $.jqplot('chart1', [physical, emotional, intellectual], {  
+                        axesDefaults : {						
+                            pad : 0,       // a factor multiplied by the data range on the axis to give the
+                                            // axis range so that data points don't fall on the edges of the axis.
+                            tickOptions : {
+                                showMark : false     // whether or not to show the mark on the axis							
+                            }
+                        },
+                        
+                        axes : {
+                            xaxis : {
+                                show : true
+                            },
+                            
+                            yaxis : {
+                                pad : 1.1
+                            }
+                        },
+                        
+                        seriesDefaults : {
+                            shadow : false			
+                        },
+                        
+                        grid : {
+                            drawGridlines : false,        // wether to draw lines across the grid or not.						
+                            background : '#fff',      // CSS color spec for background color of grid.
+                            borderWidth : 0,           // pixel width of border around grid.
+                            shadow : false               // draw a shadow for grid.						
+                        },
+                        
+                        highlighter : {
+                            show : true,
+                            sizeAdjust : 3,          // pixels to add to the size of filled markers when drawing highlight.
+                            showTooltip : true,      // show a tooltip with data point values.
+                            tooltipLocation : 'nw',  // location of tooltip : n, ne, e, se, s, sw, w, nw.
+                            fadeTooltip : true,      // use fade effect to show/hide tooltip.
+                            tooltipFadeSpeed : 'def', // slow, def, fast, or a number of milliseconds.
+                            tooltipOffset : 2,       // pixel offset of tooltip from the highlight.
+                            tooltipAxes : 'y',        // which axis values to display in the tooltip, x, y or both.
+                            useAxesFormatters : false, // use the same format string and formatters as used in the axes to
+                                                    // display values in the tooltip.
+                            tooltipFormatString : '&nbsp;%.3f &nbsp;' // sprintf format string for the tooltip.  only used if
+                                                        // useAxesFormatters is false.  Will use sprintf formatter with
+                                                        // this string, not the axes formatters.
+                
+                        }
+                    });
                 });
                 
-                function openpopup() {
-                    $('#ExchangeRate_graph').popup('open');
-                }
             </script>
 
         </div><!--page-->
