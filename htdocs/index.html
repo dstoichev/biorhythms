@@ -13,6 +13,9 @@
         <script type="text/javascript" src="./jqplot/jquery.jqplot.min.js"></script>
         <script type="text/javascript" src="./jqplot/plugins/jqplot.pointLabels.min.js"></script>
         <script type="text/javascript" src="./jqplot/plugins/jqplot.categoryAxisRenderer.min.js"></script>
+        <script type="text/javascript" src="./jqplot/plugins/jqplot.canvasAxisTickRenderer.min.js"></script>
+        <script type="text/javascript" src="./jqplot/plugins/jqplot.canvasTextRenderer.min.js"></script>
+        <script type="text/javascript" src="./jqplot/plugins/jqplot.dateAxisRenderer.min.js"></script>
         <script type="text/javascript" src="./jqplot/plugins/jqplot.highlighter.min.js"></script>
     </head>
     <body>
@@ -34,15 +37,17 @@
                         emotional = [],
                         intellectual = [],
                         currentDay = birthDay.clone(),
+                        currentDayAsString = currentDay.format('YYYY-MM-DD'),
                         currentDiffInDays = 0;
                         
-                    for (var i = 1; i < 32; i++) {
-                        physical.push([i-1, Math.sin(2 * Math.PI * currentDiffInDays / 23)]);
-                        emotional.push([i-1, Math.sin(2 * Math.PI * currentDiffInDays / 28)]);
-                        intellectual.push([i-1, Math.sin(2 * Math.PI * currentDiffInDays / 33)]);
+                    for (var i = 1; i < 26; i++) {
+                        physical.push([currentDayAsString, Math.sin(2 * Math.PI * currentDiffInDays / 23)]);
+                        emotional.push([currentDayAsString, Math.sin(2 * Math.PI * currentDiffInDays / 28)]);
+                        intellectual.push([currentDayAsString, Math.sin(2 * Math.PI * currentDiffInDays / 33)]);
                         
                         currentDiffInDays++;
                         currentDay.add(1, 'day');
+                        currentDayAsString = currentDay.format('YYYY-MM-DD')
                     }
                         
                     var plot1 = $.jqplot('chart1', [physical, emotional, intellectual], {  
@@ -57,7 +62,15 @@
                         axes : {
                             xaxis : {
                                 show : true,                                
-                                drawMajorGridlines : false
+                                drawMajorGridlines : false,
+                                renderer : $.jqplot.DateAxisRenderer,
+                                tickRenderer : $.jqplot.CanvasAxisTickRenderer,
+                                tickOptions : {
+                                    showMark : true,
+                                    markSize : 10,
+                                    labelPosition : 'middle',
+                                    angle : 45
+                                }
                             },
                             
                             yaxis : {
