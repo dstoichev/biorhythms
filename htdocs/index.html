@@ -2,14 +2,19 @@
 <html>
     <head>
 
-        <title>Line Charts and Options</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
         <link class="include" rel="stylesheet" type="text/css" href="./jqplot/jquery.jqplot.min.css" />
+        <link class="include" rel="stylesheet" type="text/css" href="./jquery/mobile/datepicker-theme.css" />
+        
         <script class="include" type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
         <script class="include" type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
+        <script type="text/javascript" src="./jquery/mobile/datepicker-wrapper.js"></script>
         <script type="text/javascript" src="./jqplot/jquery.jqplot.min.js"></script>
         <script type="text/javascript" src="./jqplot/plugins/jqplot.pointLabels.min.js"></script>
         <script type="text/javascript" src="./jqplot/plugins/jqplot.categoryAxisRenderer.min.js"></script>
@@ -19,13 +24,21 @@
         <script type="text/javascript" src="./jqplot/plugins/jqplot.highlighter.min.js"></script>
     </head>
     <body>
-        <div data-role="page" id="graph-page">
+        <div data-role="page">
+            <div data-role="header">
+                <h1>Biorhytms Calculator</h1>
+            </div><!-- /header -->
 
-            <div data-role="content">                
+            <div data-role="content">
+                <input type="text" id="date-input" data-inline="false" data-role="date">
                 <!--Graph Section-->
-                <div id="chart1" style="margin-left: 20px; height: 300px; width: 740px;"></div>
+                <div id="chart1" style="margin:0 20px 0 0; height: 300px;"></div>
 
             </div>
+            
+            <div data-role="footer">
+                <h4>&nbsp;</h4>
+            </div><!-- /footer -->
         </div>
 
             <script type="text/javascript">
