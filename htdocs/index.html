@@ -50,7 +50,9 @@
                         currentDayAsString = currentDay.format('YYYY-MM-DD')
                     }
                         
-                    var plot1 = $.jqplot('chart1', [physical, emotional, intellectual], {  
+                    var plot1 = $.jqplot('chart1', [physical, emotional, intellectual], {
+                        // Turns on animation for all series in this plot.
+                        animate : true,
                         axesDefaults : {						
                             pad : 0,       // a factor multiplied by the data range on the axis to give the
                                             // axis range so that data points don't fall on the edges of the axis.
