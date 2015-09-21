@@ -2,7 +2,7 @@
 <html>
     <head>
 
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
@@ -23,17 +23,41 @@
         <script type="text/javascript" src="./jqplot/plugins/jqplot.dateAxisRenderer.min.js"></script>
         <script type="text/javascript" src="./jqplot/plugins/jqplot.highlighter.min.js"></script>
     </head>
-    <body>
-        <div data-role="page">
+    <body>        
+        <div data-role="page" id="biorhytms-data">
             <div data-role="header">
-                <h1>Biorhytms Calculator</h1>
+                <h1>Biorhytms</h1>
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#biorhytms-data" class="ui-btn-active">Data</a></li>
+                        <li><a href="#biorhytms-chart">Chart</a></li>
+                    </ul>
+                </div><!-- /navbar -->
             </div><!-- /header -->
 
-            <div data-role="content">
-                <input type="text" id="date-input" data-inline="false" data-role="date">
+            <div role="main" class="ui-content">
+                <input type="text" id="date-input" data-inline="false" data-role="date" placeholder="Enter birthdate">                
+            </div>
+            
+            <div data-role="footer">
+                <h4>&nbsp;</h4>
+            </div><!-- /footer -->
+        </div>
+        
+        <div data-role="page" id="biorhytms-chart">
+            <div data-role="header">
+                <h1>Biorhytms</h1>
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#biorhytms-data">Data</a></li>
+                        <li><a href="#biorhytms-chart">Chart</a></li>
+                    </ul>
+                </div><!-- /navbar -->
+            </div><!-- /header -->
+
+            <div role="main" class="ui-content">
                 <!--Graph Section-->
                 <div id="chart1" style="margin:0 20px 0 0; height: 300px;"></div>
-
             </div>
             
             <div data-role="footer">
@@ -42,7 +66,7 @@
         </div>
 
             <script type="text/javascript">
-                $(document).ready(function() {
+                $(document).on('pageshow', '#biorhytms-chart', function() {
                     var now = moment(),
                         birthDay = moment("1971-06-25"),
                         diff = now.diff(birthDay, 'days'),
