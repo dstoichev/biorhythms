@@ -101,7 +101,7 @@ Bio.Chart.prototype = {
             physical = [],
             emotional = [],
             intellectual = [],
-            currentDay = birthDay.clone(),
+            currentDay = now.clone(),
             currentDayAsString = currentDay.format('YYYY-MM-DD');
             
         for (var i = 1; i < 26; i++) {
@@ -114,7 +114,20 @@ Bio.Chart.prototype = {
             currentDayAsString = currentDay.format('YYYY-MM-DD')
         }
         
-        this.addSeries([physical, emotional, intellectual]);
+        var series = [
+            {
+                config : {},
+                data : physical
+            }, {
+                config : {},
+                data : emotional
+            }, {
+                config : {},
+                data : intellectual
+            }                        
+        ];
+        
+        this.addSeries(series);
     },
     
     refreshChart : function() {
@@ -139,14 +152,14 @@ Bio.Chart.prototype = {
 	},
 	
 	areConfigsTheSame: function(conf1, conf2) {
-		var configKeysForCheckEqual = ['label', 'show', 'color'],
+		var configKeysForCheckEqual = ['show', 'color'],
 			extraConfigKeys = ['lineWidth', 'markerOptions'],
 			keys = configKeysForCheckEqual.concat(extraConfigKeys);
 			
 		for (var i = 0; i < keys.length; i++) {
 			var prop = keys[i];
-			if ((conf1.hasOwnProperty(prop) && !conf2.hasOwnProperty(prop)) ||
-				(conf2.hasOwnProperty(prop) && !conf1.hasOwnProperty(prop)) ||
+			if ((conf1.hasOwnProperty(prop) && ! conf2.hasOwnProperty(prop)) ||
+				(conf2.hasOwnProperty(prop) && ! conf1.hasOwnProperty(prop)) ||
 				(-1 != configKeysForCheckEqual.indexOf(prop) && conf1[prop] !== conf2[prop])) {
 				return false;
 			}
@@ -185,6 +198,9 @@ Bio.Chart.prototype = {
 Bio.Chart.LineSerie = function(config) {
     this.config = null;
     this.data = [];
+    
+     // The field used to hide the serie. Defaults to true.    
+    this.visible = true;
     
     $.extend(this, config);
 };
