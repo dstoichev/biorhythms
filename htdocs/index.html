@@ -47,6 +47,18 @@
                     </div>
                 </div>
                 
+                <div data-role="popup" id="biorhytms-warning" data-overlay-theme="b" data-theme="b" data-dismissible="false">
+                    <div data-role="header" data-theme="a">
+                        <h1>Warning</h1>
+                        <a href="#" data-rel="back" class="ui-btn-right ui-btn ui-corner-all ui-shadow ui-icon-delete ui-btn-icon-left ui-btn-icon-notext">Close</a>
+                    </div>
+                    <div role="main" class="ui-content">
+                        <div>&nbsp;</div>
+                        <h3 id="biorhytms-warning-text" class="ui-title">Birthdate is required</h3>
+                        <div>&nbsp;</div>
+                    </div>
+                </div>
+                
             <div data-role="footer">
                 <h4>&nbsp;</h4>
             </div><!-- /footer -->
@@ -54,6 +66,7 @@
         
         <script type="text/javascript">
             $(document).on('click', '#show-chart-toggler', function() {
+                $("#biorhytms-warning").popup("open");
                 var biorhytmsChart = new Bio.Chart();
                 biorhytmsChart.calculateSeries();
             });
