@@ -26,26 +26,15 @@
         <script type="text/javascript" src="./js/Namespaces.js"></script>
         <script type="text/javascript" src="./js/Chart.js"></script>
     </head>
-    <body>        
-        <div data-role="page">
+    <body>
+        <div data-role="page" id="biorhytms-data">
             <div data-role="header">
-                <h1>Biorhytms</h1>                
+                <h1>Biorhytms</h1>
+                <a id="to-chart-anchor" href="#biorhytms-chart" data-transition="slide" class="ui-btn-right ui-btn ui-corner-all ui-shadow ui-icon-carat-r ui-btn-icon-right">Chart</a>
             </div><!-- /header -->
-
-                <div data-role="tabs" id="tabs">
-                    <div data-role="navbar">
-                        <ul>
-                            <li><a href="#biorhytms-data" data-ajax="false" class="ui-btn-active">Data</a></li>
-                            <li><a id="show-chart-toggler" href="#biorhytms-chart" data-ajax="false">Chart</a></li>
-                        </ul>
-                    </div>
-                    <div id="biorhytms-data" class="ui-content">
-                        <input type="text" id="date-input" data-inline="false" data-role="date" placeholder="Enter birthdate">                
-                    </div>
-                    <div id="biorhytms-chart" class="ui-content">
-                        <div id="chart1" style="margin:0 20px 0 0; height: 300px;"></div>
-                    </div>
-                </div>
+      
+            <div data-role="main" class="ui-content">
+                <input type="text" id="date-input" data-inline="false" data-role="date" placeholder="Enter birthdate">
                 
                 <div data-role="popup" id="biorhytms-warning" data-overlay-theme="b" data-theme="b" data-dismissible="false">
                     <div data-role="header" data-theme="a">
@@ -58,19 +47,40 @@
                         <div>&nbsp;</div>
                     </div>
                 </div>
-                
+            </div>
+      
             <div data-role="footer">
                 <h4>&nbsp;</h4>
             </div><!-- /footer -->
-        </div><!--page-->
+        </div><!--data page-->
+        
+        <div data-role="page" id="biorhytms-chart">
+            <div data-role="header">
+                <h1>Biorhytms</h1>
+                <a href="#biorhytms-data" data-transition="slide" data-direction="reverse" class="ui-btn ui-corner-all ui-shadow ui-icon-carat-l ui-btn-icon-left">Birthdate</a>
+            </div><!-- /header -->
+      
+            <div data-role="main" class="ui-content">
+                <div id="chart1" style="margin:0 20px 0 0; height: 300px;"></div>
+            </div>
+      
+            <div data-role="footer">
+                <h4>&nbsp;</h4>
+            </div><!-- /footer -->
+        </div><!--chart page-->
         
         <script type="text/javascript">
-            $(document).on('click', '#show-chart-toggler', function() {
-                $("#biorhytms-warning").popup("open");
-                var biorhytmsChart = new Bio.Chart();
+            var biorhytmsChart = new Bio.Chart();
+            $(document).on('pagecreate', '#biorhytms-data', function(event) {                
+                $(document).on('vmousedown click', '#to-chart-anchor', function(event){
+                    $("#biorhytms-warning").popup("open");
+                    event.preventDefault();
+                    return false;
+                });
+            });
+            $(document).on('pageshow', '#biorhytms-chart', function(event) {                
                 biorhytmsChart.calculateSeries();
             });
-            
         </script>
 
     </body>

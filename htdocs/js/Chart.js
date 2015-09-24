@@ -1,5 +1,5 @@
 Bio.Chart = function() {
-    this.birthDay = '1971-06-25';
+    this.birthDay = '';
     this.chart = null;
     this.chartOptions = {
         // Turns on animation for all series in this plot.
