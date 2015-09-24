@@ -167,6 +167,10 @@ Bio.Chart.prototype = {
 		return true;
 	},
 	
+    hasBirthDateSet : function() {
+        return this.birthDay !== '';
+    },
+    
 	hasChanges: function(newSeries) {
 		if (newSeries.length != this.series.length) {
 			return true;
