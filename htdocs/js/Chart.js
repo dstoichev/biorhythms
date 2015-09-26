@@ -1,5 +1,4 @@
-Bio.Chart = function() {
-    this.birthDay = '';
+Bio.Chart = function() {    
     this.chart = null;
     this.chartOptions = {
         // Turns on animation for all series in this plot.
@@ -94,64 +93,7 @@ Bio.Chart.prototype = {
         this.refreshChart();
     },
     
-    calculateSeries : function() {
-        var now = moment(),
-            birthDay = moment(this.birthDay),
-            currentDiffInDays = now.diff(birthDay, 'days'),
-            physical = [],
-            emotional = [],
-            intellectual = [],
-            currentDay = now.clone(),
-            currentDayAsString = currentDay.format('YYYY-MM-DD');
-            
-        for (var i = 1; i < 26; i++) {
-            physical.push([currentDayAsString, Math.sin(2 * Math.PI * currentDiffInDays / 23)]);
-            emotional.push([currentDayAsString, Math.sin(2 * Math.PI * currentDiffInDays / 28)]);
-            intellectual.push([currentDayAsString, Math.sin(2 * Math.PI * currentDiffInDays / 33)]);
-            
-            currentDiffInDays++;
-            currentDay.add(1, 'day');
-            currentDayAsString = currentDay.format('YYYY-MM-DD')
-        }
-        
-        var series = [
-            {
-                config : {},
-                data : physical
-            }, {
-                config : {},
-                data : emotional
-            }, {
-                config : {},
-                data : intellectual
-            }                        
-        ];
-        
-        this.addSeries(series);
-    },
-    
-    refreshChart : function() {
-        if (this.chart) {
-            this.chart.destroy();
-            $('chart1').html('');
-        }
-		
-		this.chart = $.jqplot('chart1', this.seriesData, this.chartOptions);	
-    },
-    
-    setBirthDate : function(dateString) {
-        this.birthDay = dateString;
-    },
-    
-    setVisibleSerie: function(index, visible) {
-		if (this.series.length && visible != this.series[index].visible) {
-			this.series[index].visible = visible;
-			this.chartOptions.series[index].show = visible;
-			this.refreshChart();
-		}
-	},
-	
-	areConfigsTheSame: function(conf1, conf2) {
+    areConfigsTheSame: function(conf1, conf2) {
 		var configKeysForCheckEqual = ['show', 'color'],
 			extraConfigKeys = ['lineWidth', 'markerOptions'],
 			keys = configKeysForCheckEqual.concat(extraConfigKeys);
@@ -166,12 +108,8 @@ Bio.Chart.prototype = {
 		}
 		return true;
 	},
-	
-    hasBirthDateSet : function() {
-        return this.birthDay !== '';
-    },
     
-	hasChanges: function(newSeries) {
+    hasChanges: function(newSeries) {
 		if (newSeries.length != this.series.length) {
 			return true;
 		}
@@ -196,6 +134,23 @@ Bio.Chart.prototype = {
 			}
 		}		
 		return false;
+	},
+        
+    refreshChart : function() {
+        if (this.chart) {
+            this.chart.destroy();
+            $('chart1').html('');
+        }
+		
+		this.chart = $.jqplot('chart1', this.seriesData, this.chartOptions);	
+    },
+    
+    setVisibleSerie: function(index, visible) {
+		if (this.series.length && visible != this.series[index].visible) {
+			this.series[index].visible = visible;
+			this.chartOptions.series[index].show = visible;
+			this.refreshChart();
+		}
 	}
 };
 

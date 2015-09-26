@@ -25,6 +25,9 @@
         
         <script type="text/javascript" src="./js/Namespaces.js"></script>
         <script type="text/javascript" src="./js/Chart.js"></script>
+        <script type="text/javascript" src="./js/Biorhytms.js"></script>
+        <script type="text/javascript" src="./js/DateOfBirth.js"></script>
+        <script type="text/javascript" src="./js/main.js"></script>
     </head>
     <body>
         <div data-role="page" id="biorhytms-data">
@@ -34,6 +37,7 @@
             </div><!-- /header -->
       
             <div data-role="main" class="ui-content">
+                <label for="birthdate-datepicker">Date of Birth:</label>
                 <input type="text" id="birthdate-datepicker">
                 
                 <div data-role="popup" id="biorhytms-warning" data-overlay-theme="b" data-theme="b" data-dismissible="false">
@@ -70,32 +74,7 @@
         </div><!--chart page-->
         
         <script type="text/javascript">
-            var biorhytmsChart = new Bio.Chart();
-            $(document).on('pagecreate', '#biorhytms-data', function(event) {
-                $('#birthdate-datepicker').date({
-                    inline : false,
-                    dateFormat : 'yy-mm-dd',
-                    placeholder : 'Enter birthdate',
-                    changeMonth : true,
-                    changeYear : true,
-                    showOtherMonths : true,
-                    selectOtherMonths : false,
-                    onSelect: function(dateString) {
-                        biorhytmsChart.setBirthDate(dateString);
-                    }
-                });
-                $(document).on('vmousedown click', '#to-chart-anchor', function(event) {
-                    if (! biorhytmsChart.hasBirthDateSet()) {
-                        $("#biorhytms-warning-text").html('Birthdate is required');
-                        $("#biorhytms-warning").popup("open");
-                        event.preventDefault();
-                        return false;
-                    }                    
-                });
-            });
-            $(document).on('pageshow', '#biorhytms-chart', function(event) {                
-                biorhytmsChart.calculateSeries();
-            });
+            Bio.main();
         </script>
 
     </body>
