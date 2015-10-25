@@ -11,7 +11,7 @@ Bio.DateOfBirth.prototype = {
             changeYear : true,
             showOtherMonths : true,
             selectOtherMonths : false,
-            onSelect: function(dateString) {console.debug(dateString);
+            onSelect: function(dateString) {
                 biorhytmsPanel.setBirthDate(dateString);
             }
         });

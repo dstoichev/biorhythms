@@ -3,8 +3,17 @@ Bio.main = function() {
         birthDatePicker = new Bio.DateOfBirth();
         
     $(document).on('pagecreate', '#biorhytms-data', function(event) {
-        birthDatePicker.init(biorhytmsPanel);
+        birthDatePicker.init(biorhytmsPanel);        
+    });
+    
+    $(document).on('pagecreate', '#biorhytms-chart', function(event) {
+        $(document).on('click', '#next-period', function(event) {
+            biorhytmsPanel.nextPeriod();
+        });
         
+        $(document).on('click', '#prev-period', function(event) {
+            biorhytmsPanel.previousPeriod();
+        });
     });
     
     $(document).on('pageshow', '#biorhytms-chart', function(event) {                
