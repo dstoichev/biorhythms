@@ -1,18 +1,25 @@
 Bio.main = function() {
     var biorhytmsPanel = new Bio.Biorhytms(),
-        birthDatePicker = new Bio.DateOfBirth();
+        birthDatePicker = new Bio.DateOfBirth(),
+        periodStartPicker = new Bio.PeriodStartPicker();
         
     $(document).on('pagecreate', '#biorhytms-data', function(event) {
         birthDatePicker.init(biorhytmsPanel);        
     });
     
     $(document).on('pagecreate', '#biorhytms-chart', function(event) {
-        $(document).on('click', '#next-period', function(event) {
+        $(document).on('vmousedown click', '#next-period', function(event) {
             biorhytmsPanel.nextPeriod();
         });
         
-        $(document).on('click', '#prev-period', function(event) {
+        $(document).on('vmousedown click', '#prev-period', function(event) {
             biorhytmsPanel.previousPeriod();
+        });
+        
+        periodStartPicker.init(biorhytmsPanel);
+        
+        $(document).on('vmousedown click', '#period-start-picker-trigger', function(event) {
+            periodStartPicker.show();
         });
     });
     

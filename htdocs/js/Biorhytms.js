@@ -60,5 +60,9 @@ Bio.Biorhytms.prototype = {
     
     setBirthDate : function(dateString) {
         this.birthDay = dateString;
+    },
+    
+    setPeriodStart : function(dateString) {
+        this.periodStart = moment(dateString);
     }
 };

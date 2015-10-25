@@ -27,6 +27,7 @@
         <script type="text/javascript" src="./js/Chart.js"></script>
         <script type="text/javascript" src="./js/Biorhytms.js"></script>
         <script type="text/javascript" src="./js/DateOfBirth.js"></script>
+        <script type="text/javascript" src="./js/PeriodStartPicker.js"></script>
         <script type="text/javascript" src="./js/main.js"></script>
     </head>
     <body>
@@ -65,10 +66,10 @@
             </div><!-- /header -->
       
             <div data-role="main" class="ui-content">
-                <input type="text" id="periodstart-datepicker" style="display: none;">
+                <input type="text" id="periodstart-datepicker">
                 <div data-role="controlgroup" data-type="horizontal" style="margin-left: 10px;">
                     <a id="prev-period" href="#" class="ui-btn ui-corner-all ui-icon-carat-l ui-btn-icon-left ui-btn-icon-notext">Left</a>
-                    <a href="#" class="ui-btn ui-corner-all ui-icon-calendar ui-btn-icon-left">Choose Start</a>                    
+                    <a id="period-start-picker-trigger" href="#" class="ui-btn ui-corner-all ui-icon-calendar ui-btn-icon-left">Choose Start</a>                    
                     <a id="next-period" href="#" class="ui-btn ui-corner-all ui-icon-carat-r ui-btn-icon-right ui-btn-icon-notext">Right</a>
                 </div>
 
