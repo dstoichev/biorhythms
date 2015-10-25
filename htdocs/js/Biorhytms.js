@@ -3,7 +3,7 @@ Bio.Biorhytms = function() {
     
     this.biorhytmsChart = new Bio.Chart();
     
-    this.periodLength = 31;
+    this.periodLength = 32;
     
     this.periodStart = moment();
 };
@@ -18,7 +18,7 @@ Bio.Biorhytms.prototype = {
             currentDay = this.periodStart.clone(),
             currentDayAsString = currentDay.format('YYYY-MM-DD');
             
-        for (var i = 1; i < this.periodLength+1; i++) {
+        for (var i = 1; i < this.periodLength; i++) {
             physical.push([currentDayAsString, Math.sin(2 * Math.PI * currentDiffInDays / 23)]);
             emotional.push([currentDayAsString, Math.sin(2 * Math.PI * currentDiffInDays / 28)]);
             intellectual.push([currentDayAsString, Math.sin(2 * Math.PI * currentDiffInDays / 33)]);
