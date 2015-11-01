@@ -3,7 +3,7 @@ Bio.Biorhytms = function() {
     
     this.biorhytmsChart = new Bio.Chart();
     
-    this.periodLength = 32;
+    this.periodLength = 26;
     
     this.periodStart = moment();
 };

@@ -4,7 +4,7 @@ Bio.Chart = function() {
         // Turns on animation for all series in this plot.
         animate : true,
         axesDefaults : {						
-            pad : 1,       // a factor multiplied by the data range on the axis to give the
+            pad : 0,       // a factor multiplied by the data range on the axis to give the
                             // axis range so that data points don't fall on the edges of the axis.
             tickOptions : {
                 showMark : false     // whether or not to show the mark on the axis							

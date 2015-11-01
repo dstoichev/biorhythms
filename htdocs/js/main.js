@@ -8,17 +8,17 @@ Bio.main = function() {
     });
     
     $(document).on('pagecreate', '#biorhytms-chart', function(event) {
-        $(document).on('vmousedown click', '#next-period', function(event) {
+        $(document).on('vmousedown', '#next-period', function(event) {
             biorhytmsPanel.nextPeriod();
         });
         
-        $(document).on('vmousedown click', '#prev-period', function(event) {
+        $(document).on('vmousedown', '#prev-period', function(event) {
             biorhytmsPanel.previousPeriod();
         });
         
         periodStartPicker.init(biorhytmsPanel);
         
-        $(document).on('vmousedown click', '#period-start-picker-trigger', function(event) {
+        $(document).on('vmousedown', '#period-start-picker-trigger', function(event) {
             periodStartPicker.show();
         });
     });
