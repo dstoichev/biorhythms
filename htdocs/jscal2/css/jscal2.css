@@ -6,16 +6,16 @@
   -webkit-user-select: none;
   user-select: none;
   background: #e8e8e8;
-  font: 11px "lucida grande",tahoma,verdana,sans-serif;
-  line-height: 14px;
+  font: 16px "lucida grande",tahoma,verdana,sans-serif;
+  line-height: 19px;
   position: relative;
   cursor: default;
 }
 
 .DynarchCalendar table {
   border-collapse: collapse;
-  font: 11px "lucida grande",tahoma,verdana,sans-serif;
-  line-height: 14px;
+  font: 16px "lucida grande",tahoma,verdana,sans-serif;
+  line-height: 19px;
 }
 
 .DynarchCalendar-topBar {
