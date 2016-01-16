@@ -16,12 +16,14 @@ Bio.DateOfBirth.prototype = {
             }
         });
         
-        $(document).on('vmousedown click', '#to-chart-anchor', function(event) {
+        $(document).on('vmousedown', '#to-chart-anchor', function(event) {
             if (! biorhytmsPanel.hasBirthDateSet()) {
                 Bio.warn('Birthdate is required');
                 event.preventDefault();
                 return false;
-            }                    
+            }
+            
+            $('biorhytms-chart').page('show');
         });
     }
 };
