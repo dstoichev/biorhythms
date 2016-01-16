@@ -1,21 +1,27 @@
 Bio.DateOfBirth = function() {
-    
+    this.datePicker = null;
 };
 
 Bio.DateOfBirth.prototype = {
     init : function(biorhytmsPanel) {
-        $('#birthdate-datepicker').date({
-            inline : false,
-            dateFormat : 'yy-mm-dd',
-            changeMonth : true,
-            changeYear : true,
-            showOtherMonths : true,
-            selectOtherMonths : false,
-            onSelect: function(dateString) {
+        var that = this;
+        
+        this.datePicker = Calendar.setup({
+            inputField : "birthdate-datepicker",
+            trigger : "birthdate-datepicker",
+            align : 'Br/B/l/T/r',
+            dateFormat : '%Y-%m-%d',
+            onSelect : function() {
+                var dateString = this.selection.get() + '';
                 biorhytmsPanel.setBirthDate(dateString);
+                this.hide();
             }
         });
-        
+        /*
+        $(document).on('vmousedown', '#birthdate-datepicker', function(event) {
+            that.datePicker.popup(event.target);
+        });
+        */
         $(document).on('vmousedown', '#to-chart-anchor', function(event) {
             if (! biorhytmsPanel.hasBirthDateSet()) {
                 Bio.warn('Birthdate is required');

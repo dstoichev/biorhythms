@@ -1,23 +1,26 @@
 Bio.PeriodStartPicker = function() {
-    
+    this.datePicker = null;
 };
 
 Bio.PeriodStartPicker.prototype = {
     init : function(biorhytmsPanel) {
-        $('#periodstart-datepicker').date({
-            inline : false,
-            dateFormat : 'yy-mm-dd',
-            changeMonth : true,
-            changeYear : true,
-            showOtherMonths : true,
-            selectOtherMonths : false,
-            onSelect: function(dateString) {
+        var that = this;
+        
+        this.datePicker = Calendar.setup({
+            inputField : "periodstart-datepicker",
+            trigger : "period-start-picker-trigger",
+            align : 'Br/B/l/T/r',
+            dateFormat : '%Y-%m-%d',
+            onSelect : function() {
+                var dateString = this.selection.get() + '';
                 biorhytmsPanel.setPeriodStart(dateString);
+                this.hide();
             }
         });
-    },
-    
-    show : function() {
-        setTimeout(function(){$('#periodstart-datepicker').datepicker('show');}, 350);
+        /*
+        $(document).on('vmousedown', '#period-start-picker-trigger', function(event) {
+            that.datePicker.popup('period-start-picker-trigger');
+        });
+        */
     }
 };

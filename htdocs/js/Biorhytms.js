@@ -1,5 +1,5 @@
 Bio.Biorhytms = function() {
-    this.birthDay = '';
+    this.birthDay = null;
     
     this.biorhytmsChart = new Bio.Chart();
     
@@ -10,7 +10,7 @@ Bio.Biorhytms = function() {
 
 Bio.Biorhytms.prototype = {
     calculateSeries : function() {
-        var birthDay = moment(this.birthDay),
+        var birthDay = this.birthDay,
             currentDiffInDays = this.periodStart.diff(birthDay, 'days'),
             physical = [],
             emotional = [],
@@ -45,7 +45,7 @@ Bio.Biorhytms.prototype = {
     },
     
     hasBirthDateSet : function() {
-        return this.birthDay !== '';
+        return this.birthDay !== null;
     },
     
     nextPeriod : function() {
@@ -59,10 +59,11 @@ Bio.Biorhytms.prototype = {
     },
     
     setBirthDate : function(dateString) {
-        this.birthDay = dateString;
+        this.birthDay = moment(dateString, 'YYYYMMDD'); // See JSCal2 inner format
     },
     
     setPeriodStart : function(dateString) {
-        this.periodStart = moment(dateString);
+        this.periodStart = moment(dateString, 'YYYYMMDD'); // // See JSCal2 inner format
+        this.calculateSeries();
     }
 };

@@ -17,10 +17,6 @@ Bio.main = function() {
         });
         
         periodStartPicker.init(biorhytmsPanel);
-        
-        $(document).on('vmousedown', '#period-start-picker-trigger', function(event) {
-            periodStartPicker.show();
-        });
     });
     
     $(document).on('pageshow', '#biorhytms-chart', function(event) {                
