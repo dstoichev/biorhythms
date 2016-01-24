@@ -16,12 +16,28 @@ Bio.Biorhytms.prototype = {
             emotional = [],
             intellectual = [],
             currentDay = this.periodStart.clone(),
-            currentDayAsString = currentDay.format('YYYY-MM-DD');
+            currentDayAsString = currentDay.format('YYYY-MM-DD'),
+            currentPhysicalVal, currentEmotionalVal, currentIntellectualVal,
+            isPhysicalCritical, isEmotionalCritical, isIntellectualCritical,
+            isDoubleCritical, isTripleCritical;
             
         for (var i = 1; i < this.periodLength; i++) {
-            physical.push([currentDayAsString, Math.sin(2 * Math.PI * currentDiffInDays / 23)]);
-            emotional.push([currentDayAsString, Math.sin(2 * Math.PI * currentDiffInDays / 28)]);
-            intellectual.push([currentDayAsString, Math.sin(2 * Math.PI * currentDiffInDays / 33)]);
+            currentPhysicalVal = Math.sin(2 * Math.PI * currentDiffInDays / 23);
+            isPhysicalCritical = (0 == currentPhysicalVal) || (0 == currentDiffInDays % 11 && 0 < currentPhysicalVal); // half period
+            physical.push([currentDayAsString, currentPhysicalVal]);
+            
+            currentEmotionalVal = Math.sin(2 * Math.PI * currentDiffInDays / 28);
+            isEmotionalCritical = (0 == currentDiffInDays % 14);
+            emotional.push([currentDayAsString, currentEmotionalVal]);
+            
+            currentIntellectualVal = Math.sin(2 * Math.PI * currentDiffInDays / 33);
+            isIntellectualCritical = (0 == currentIntellectualVal) || (0 == currentDiffInDays % 16 && 0 < currentIntellectualVal); // half period
+            intellectual.push([currentDayAsString, currentIntellectualVal]);
+            
+            isTripleCritical = (isPhysicalCritical && isEmotionalCritical && isIntellectualCritical);
+            isDoubleCritical = ! isTripleCritical && ((isPhysicalCritical && isEmotionalCritical) ||
+                                                      (isPhysicalCritical && isIntellectualCritical) ||
+                                                      (isEmotionalCritical && isIntellectualCritical));
             
             currentDiffInDays++;
             currentDay.add(1, 'day');
