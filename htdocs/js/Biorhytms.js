@@ -74,12 +74,12 @@ Bio.Biorhytms.prototype = {
         this.calculateSeries();
     },
     
-    setBirthDate : function(dateString) {
-        this.birthDay = moment(dateString, 'YYYYMMDD'); // See JSCal2 inner format
+    setBirthDate : function(dateMoment) {
+        this.birthDay = dateMoment;
     },
     
-    setPeriodStart : function(dateString) {
-        this.periodStart = moment(dateString, 'YYYYMMDD'); // // See JSCal2 inner format
+    setPeriodStart : function(dateMoment) {
+        this.periodStart = dateMoment;
         this.calculateSeries();
     }
 };

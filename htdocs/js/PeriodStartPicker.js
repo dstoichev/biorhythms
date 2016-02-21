@@ -13,7 +13,7 @@ Bio.PeriodStartPicker.prototype = {
             dateFormat : '%Y-%m-%d',
             onSelect : function() {
                 var dateString = this.selection.get() + '';
-                biorhytmsPanel.setPeriodStart(dateString);
+                biorhytmsPanel.setPeriodStart(moment(dateString, 'YYYYMMDD')); // // See JSCal2 inner format
                 this.hide();
             }
         });
