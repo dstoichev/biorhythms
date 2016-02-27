@@ -1,5 +1,5 @@
 Bio.Biorhytms = function() {
-    this.birthDay = null;
+    this.birthDay = moment('1972-06-25', 'YYYY-MM-DD');
     
     this.biorhytmsChart = new Bio.Chart();
     

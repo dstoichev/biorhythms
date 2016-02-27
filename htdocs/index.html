@@ -9,6 +9,7 @@
         <link class="include" rel="stylesheet" type="text/css" href="./jqplot/jquery.jqplot.min.css" />
         <link class="include" rel="stylesheet" type="text/css" href="./jscal2/css/jscal2.css" />
         <link class="include" rel="stylesheet" type="text/css" href="./jscal2/css/border-radius.css" />
+        <link class="include" rel="stylesheet" type="text/css" href="./css/style.css" />
         
         <script class="include" type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
         <script class="include" type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
@@ -33,15 +34,48 @@
         <script type="text/javascript" src="./js/main.js"></script>
     </head>
     <body>
-        <div data-role="page" id="biorhytms-data">
+        <div data-role="page" id="biorhytms">
             <div data-role="header">
-                <h1>Biorhytms</h1>
-                <a id="to-chart-anchor" href="#biorhytms-chart" data-transition="slide" class="ui-btn-right ui-btn ui-corner-all ui-shadow ui-icon-carat-r ui-btn-icon-right">Chart</a>
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <div class="ui-bar">
+                            <div class="ui-field-contain" style="margin: 0px;">
+                                <label for="birthdate-datepicker">Date of Birth:</label>
+                                <input type="text" id="birthdate-datepicker">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui-block-b">
+                        <div class="ui-bar">
+                            <a  style="margin-top: 1px;" id="birthdate-picker-trigger" href="#" class="ui-btn ui-corner-all ui-icon-calendar ui-btn-icon-left">Select</a>
+                        </div>
+                    </div>
+                </div>
             </div><!-- /header -->
-      
+            
             <div data-role="main" class="ui-content">
-                <label for="birthdate-datepicker">Date of Birth:</label>
-                <input type="text" id="birthdate-datepicker">
+                <div data-role="tabs">
+                    <div data-role="navbar">
+                        <ul>
+                          <li><a href="#chart" data-theme="a" data-ajax="false" class="ui-btn-active">Chart</a></li>
+                          <li><a href="#critical-days" data-theme="a" data-ajax="false">Critical days</a></li>                          
+                        </ul>
+                    </div>
+        
+                    <div id="chart" class="ui-content">
+                        <div id="chart1" style="margin:20px 20px 0 0; height: 300px;"></div>
+                    </div><!-- /chart -->
+                    
+                    <div id="critical-days" class="ui-content">
+                        <ul data-role="listview">
+                            <li><a href="#">Acura</a></li>
+                            <li><a href="#">Audi</a></li>
+                            <li><a href="#">BMW</a></li>
+                            <li><a href="#">Cadillac</a></li>
+                            <li><a href="#">Ferrari</a></li>
+                        </ul>
+                    </div><!-- /critical days -->
+                </div><!-- /tabs -->
                 
                 <div data-role="popup" id="biorhytms-warning" data-overlay-theme="b" data-theme="b" data-dismissible="false">
                     <div data-role="header" data-theme="a">
@@ -53,35 +87,24 @@
                         <h3 id="biorhytms-warning-text" class="ui-title">&nbsp;</h3>
                         <div>&nbsp;</div>
                     </div>
-                </div>
-            </div>
-      
+                </div><!-- /popup -->
+            </div><!-- /content -->
+            
             <div data-role="footer">
-                <h4>&nbsp;</h4>
+                <input type="text" style="display: none;" id="periodstart-datepicker">
+                <div class="ui-grid-b">
+                    <div class="ui-block-a">&nbsp;</div>
+                    <div class="ui-block-b" style="text-align: center;">
+                        <div data-role="controlgroup" data-type="horizontal">
+                            <a id="prev-period" href="#" class="ui-btn ui-corner-all ui-icon-carat-l ui-btn-icon-right ui-btn-icon-notext">Left</a>
+                            <a id="period-start-picker-trigger" href="#" class="ui-btn ui-corner-all ui-icon-calendar ui-btn-icon-left">Choose Start</a>                    
+                            <a id="next-period" href="#" class="ui-btn ui-corner-all ui-icon-carat-r ui-btn-icon-right ui-btn-icon-notext">Right</a>
+                        </div>
+                    </div>
+                    <div class="ui-block-c">&nbsp;</div>
+                </div><!-- /grid-b -->                
             </div><!-- /footer -->
-        </div><!--data page-->
-        
-        <div data-role="page" id="biorhytms-chart">
-            <div data-role="header">
-                <h1>Biorhytms</h1>
-                <a id="to-data-anchor" href="#biorhytms-data" data-transition="slide" data-direction="reverse" class="ui-btn ui-corner-all ui-shadow ui-icon-carat-l ui-btn-icon-left">Birthdate</a>
-            </div><!-- /header -->
-      
-            <div data-role="main" class="ui-content">
-                <input type="text" id="periodstart-datepicker">
-                <div data-role="controlgroup" data-type="horizontal" style="margin-left: 10px;">
-                    <a id="prev-period" href="#" class="ui-btn ui-corner-all ui-icon-carat-l ui-btn-icon-left ui-btn-icon-notext">Left</a>
-                    <a id="period-start-picker-trigger" href="#" class="ui-btn ui-corner-all ui-icon-calendar ui-btn-icon-left">Choose Start</a>                    
-                    <a id="next-period" href="#" class="ui-btn ui-corner-all ui-icon-carat-r ui-btn-icon-right ui-btn-icon-notext">Right</a>
-                </div>
-
-                <div id="chart1" style="margin:20px 20px 0 0; height: 300px;"></div>
-            </div>
-      
-            <div data-role="footer">
-                <h4>&nbsp;</h4>
-            </div><!-- /footer -->
-        </div><!--chart page-->
+        </div><!-- /page -->
         
         <script type="text/javascript">
             Bio.main();

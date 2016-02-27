@@ -3,11 +3,9 @@ Bio.main = function() {
         birthDatePicker = new Bio.DateOfBirth(),
         periodStartPicker = new Bio.PeriodStartPicker();
         
-    $(document).on('pagecreate', '#biorhytms-data', function(event) {
-        birthDatePicker.init(biorhytmsPanel);        
-    });
-    
-    $(document).on('pagecreate', '#biorhytms-chart', function(event) {
+    $(document).on('pagecreate', '#biorhytms', function(event) {
+        birthDatePicker.init(biorhytmsPanel);
+        
         $(document).on('vmousedown', '#next-period', function(event) {
             biorhytmsPanel.nextPeriod();
         });
@@ -19,7 +17,7 @@ Bio.main = function() {
         periodStartPicker.init(biorhytmsPanel);
     });
     
-    $(document).on('pageshow', '#biorhytms-chart', function(event) {                
+    $(document).on('pageshow', '#biorhytms', function(event) {                
         biorhytmsPanel.calculateSeries();
     });
 };
