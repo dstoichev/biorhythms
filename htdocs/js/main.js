@@ -18,7 +18,7 @@ Bio.main = function() {
     });
     
     $(document).on('pageshow', '#biorhytms', function(event) {                
-        biorhytmsPanel.calculateSeries();
+        biorhytmsPanel.init();
     });
 };
 

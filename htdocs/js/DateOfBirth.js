@@ -13,8 +13,7 @@ Bio.DateOfBirth.prototype = {
             dateFormat : '%Y-%m-%d',
             onSelect : function() {
                 var dateString = this.selection.get() + '';
-                biorhytmsPanel.setBirthDate(moment(dateString, 'YYYYMMDD')); // See JSCal2 inner format
-                biorhytmsPanel.calculateSeries();
+                biorhytmsPanel.setBirthDate(moment(dateString, 'YYYYMMDD')); // See JSCal2 inner format                
                 this.hide();
             }
         });

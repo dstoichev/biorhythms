@@ -1,7 +1,9 @@
 Bio.Biorhytms = function() {
-    this.birthDay = moment('1972-06-25', 'YYYY-MM-DD');
+    this.birthDay = null;
     
     this.biorhytmsChart = new Bio.Chart();
+    
+    this.defaultBirthdate = moment('1972-06-25', 'YYYY-MM-DD');
     
     this.periodLength = 26;
     
@@ -64,6 +66,15 @@ Bio.Biorhytms.prototype = {
         return this.birthDay !== null;
     },
     
+    init : function() {
+        if (! this.hasBirthDateSet()) {
+            this.setBirthDate(this.defaultBirthdate);
+        }
+        else {
+            this.calculateSeries();
+        }
+    },
+    
     nextPeriod : function() {
         this.periodStart.add(this.periodLength - 2, 'days');
         this.calculateSeries();
@@ -76,6 +87,8 @@ Bio.Biorhytms.prototype = {
     
     setBirthDate : function(dateMoment) {
         this.birthDay = dateMoment;
+        $("#display-birthdate").html(dateMoment.format('DD-MMM-YYYY'));
+        this.calculateSeries();
     },
     
     setPeriodStart : function(dateMoment) {

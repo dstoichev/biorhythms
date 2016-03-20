@@ -36,20 +36,11 @@
     <body>
         <div data-role="page" id="biorhytms">
             <div data-role="header">
-                <div class="ui-grid-a">
-                    <div class="ui-block-a">
-                        <div class="ui-bar">
-                            <div class="ui-field-contain" style="margin: 0px;">
-                                <label for="birthdate-datepicker">Date of Birth:</label>
-                                <input type="text" id="birthdate-datepicker">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ui-block-b">
-                        <div class="ui-bar">
-                            <a  style="margin-top: 1px;" id="birthdate-picker-trigger" href="#" class="ui-btn ui-corner-all ui-icon-calendar ui-btn-icon-left">Select</a>
-                        </div>
-                    </div>
+                <input style="display: none;" type="text" id="birthdate-datepicker" />
+                <div style="text-align: center;">
+                    <a style="margin-top: 1px;" id="birthdate-picker-trigger" href="#" class="ui-btn ui-corner-all ui-icon-calendar ui-btn-icon-right">
+                        Birth Date:&nbsp;<span id="display-birthdate"></span>
+                    </a>
                 </div>
             </div><!-- /header -->
             
@@ -92,17 +83,11 @@
             
             <div data-role="footer">
                 <input type="text" style="display: none;" id="periodstart-datepicker">
-                <div class="ui-grid-b">
-                    <div class="ui-block-a">&nbsp;</div>
-                    <div class="ui-block-b" style="text-align: center;">
-                        <div data-role="controlgroup" data-type="horizontal">
-                            <a id="prev-period" href="#" class="ui-btn ui-corner-all ui-icon-carat-l ui-btn-icon-right ui-btn-icon-notext">Left</a>
-                            <a id="period-start-picker-trigger" href="#" class="ui-btn ui-corner-all ui-icon-calendar ui-btn-icon-left">Choose Start</a>                    
-                            <a id="next-period" href="#" class="ui-btn ui-corner-all ui-icon-carat-r ui-btn-icon-right ui-btn-icon-notext">Right</a>
-                        </div>
-                    </div>
-                    <div class="ui-block-c">&nbsp;</div>
-                </div><!-- /grid-b -->                
+                <div data-role="controlgroup" style="text-align: center;" data-type="horizontal">
+                    <a id="prev-period" href="#" class="ui-btn ui-corner-all ui-icon-carat-l ui-btn-icon-right ui-btn-icon-notext">Left</a>
+                    <a id="period-start-picker-trigger" href="#" class="ui-btn ui-corner-all ui-icon-calendar ui-btn-icon-left">Choose Start</a>                    
+                    <a id="next-period" href="#" class="ui-btn ui-corner-all ui-icon-carat-r ui-btn-icon-right ui-btn-icon-notext">Right</a>
+                </div>                
             </div><!-- /footer -->
         </div><!-- /page -->
         
