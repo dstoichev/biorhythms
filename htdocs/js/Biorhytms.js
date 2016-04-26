@@ -48,13 +48,19 @@ Bio.Biorhytms.prototype = {
         
         var series = [
             {
-                config : {},
+                config : {
+                    color : '#00cc00'
+                },
                 data : physical
             }, {
-                config : {},
+                config : {
+                    color : '#ff66ff'
+                },
                 data : emotional
             }, {
-                config : {},
+                config : {
+                    color : '#ffff00'
+                },
                 data : intellectual
             }                        
         ];
